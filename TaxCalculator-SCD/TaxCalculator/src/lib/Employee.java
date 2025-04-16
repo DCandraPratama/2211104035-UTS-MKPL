@@ -1,7 +1,6 @@
 package lib;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -51,7 +50,6 @@ public class Employee {
 	 * Fungsi untuk menentukan gaji bulanan pegawai berdasarkan grade kepegawaiannya (grade 1: 3.000.000 per bulan, grade 2: 5.000.000 per bulan, grade 3: 7.000.000 per bulan)
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
-	
 	 public void setMonthlySalary(int grade) {
 		int baseSalary = switch (grade) {
 			case 1 -> 3000000;
@@ -61,7 +59,6 @@ public class Employee {
 		};
 		monthlySalary = isForeigner ? (int)(baseSalary * 1.5) : baseSalary;
 	}
-	
 	
 	public void setAnnualDeductible(int deductible) {	
 		this.annualDeductible = deductible;
@@ -88,7 +85,7 @@ public class Employee {
 		
 		if (date.getYear() == yearJoined) {
 			monthWorkingInYear = date.getMonthValue() - monthJoined;
-		}else {
+		} else {
 			monthWorkingInYear = 12;
 		}
 		
@@ -102,4 +99,14 @@ public class Employee {
 		);
 		
 		return TaxFunction.calculateTax(taxData);		
+	}
+
+	// ✅ Tambahan Refactor 6: Encapsulate Field
+	public List<String> getChildNames() {
+		return new LinkedList<>(childNames);
+	}
+
+	public List<String> getChildIdNumbers() {
+		return new LinkedList<>(childIdNumbers);
+	}
 }
